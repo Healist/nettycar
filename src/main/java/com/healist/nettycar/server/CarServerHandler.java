@@ -4,8 +4,6 @@ import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.channel.group.ChannelGroup;
-import io.netty.channel.group.DefaultChannelGroup;
-import io.netty.util.concurrent.GlobalEventExecutor;
 
 /**
  * @Author healist
@@ -14,7 +12,7 @@ import io.netty.util.concurrent.GlobalEventExecutor;
  */
 public class CarServerHandler extends SimpleChannelInboundHandler<String> {
 
-    public static ChannelGroup channels = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
+    public static ChannelGroup channels = CarChannelGroup.getInstance();
 
     @Override
     public void handlerAdded(ChannelHandlerContext ctx) throws Exception {

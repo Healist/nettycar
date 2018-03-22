@@ -1,18 +1,19 @@
 package com.healist.nettycar.server;
 
 import io.netty.bootstrap.ServerBootstrap;
-import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import org.springframework.stereotype.Component;
 
 /**
  * @Author healist
  * @Description
  * @Create 2018-03-14 下午5:09
  */
+@Component
 public class CarServer {
 
     private int port;
