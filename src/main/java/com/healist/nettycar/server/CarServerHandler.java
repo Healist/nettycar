@@ -1,5 +1,6 @@
 package com.healist.nettycar.server;
 
+import com.healist.nettycar.server.handler.MessageHandler;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
@@ -36,14 +37,8 @@ public class CarServerHandler extends SimpleChannelInboundHandler<String> {
     }
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, String s) throws Exception {
-        Channel incoming = ctx.channel();
-        for (Channel channel : channels) {
-            if (channel != incoming){
-                channel.writeAndFlush("[" + incoming.remoteAddress() + "]" + s + "\n");
-            } else {
-                channel.writeAndFlush("[you]" + s + "\n");
-            }
-        }
+//        Channel incoming = ctx.channel();
+        MessageHandler.handleMsg(s);
     }
 
     @Override

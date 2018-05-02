@@ -1,5 +1,8 @@
 package com.healist.nettycar.server;
 
+import com.healist.nettycar.common.constant.Constant;
+import io.netty.buffer.ByteBuf;
+import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.SocketChannel;
@@ -19,7 +22,9 @@ public class CarServerInitializer extends ChannelInitializer<SocketChannel> {
     protected void initChannel(SocketChannel socketChannel) throws Exception {
         ChannelPipeline pipeline = socketChannel.pipeline();
 
-        pipeline.addLast("framer", new DelimiterBasedFrameDecoder(8192, Delimiters.lineDelimiter()));
+        ByteBuf delimiter = Unpooled.copiedBuffer(Constant.JOINER.getBytes());
+        //Delimiters.lineDelimiter()
+        pipeline.addLast("framer", new DelimiterBasedFrameDecoder(8192, delimiter));
         pipeline.addLast("decoder", new StringDecoder());
         pipeline.addLast("encoder", new StringEncoder());
         pipeline.addLast("handler", new CarServerHandler());

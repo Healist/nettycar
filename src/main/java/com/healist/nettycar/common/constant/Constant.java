@@ -9,4 +9,36 @@ public interface Constant {
 
     String JOINER = "Q1";
 
+    String CAR_STATE = "S1";
+
+    String CAR_POS = "W1";
+
+    String CAR_DRIVER = "D1";
+
+    String WATER_TEMP = "I1";
+
+    String OIL_TEMP = "I2";
+
+    String ROTATING_SPEED = "I3";
+
+    String CAR_SPEED = "I4";
+
+    String CAR_STOLLS = "I5";
+
+    String OIL_PRESSURE = "I6";
+
+    String VOLTAGE = "I7";
+
+    String EXCEPTION = "E1";
+
+    String ID = "ID";
+
+    String TIME = "TI";
+
+    String END = "END";
+
+    int HEAD_LENGTH = 60;
+
+    int BODY_LENGTH = 30;
+
 }

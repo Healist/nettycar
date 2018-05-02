@@ -15,7 +15,7 @@ public class Car {
     /**
      * 汽车编号
      */
-    Long carNumber;
+    String carNumber;
 
     /**
      * 当前驾驶员
@@ -23,39 +23,11 @@ public class Car {
     String driver;
 
     /**
-     * 动力类型
+     * 经纬度
      */
-    String powerType;
+    String latitude;
 
-    /**
-     * 油量
-     */
-    int oilAmount;
-
-    /**
-     * 开机or关机
-     */
-    boolean running;
-
-    /**
-     * 是否锁车
-     */
-    boolean locked;
-
-    /**
-     * 座椅开关状态（1：正常，0：不正常）
-     */
-    byte chairSwitchState;
-
-    /**
-     * 是否系上安全带
-     */
-    boolean seatBelt;
-
-    /**
-     * 手制动状态（1：正常，0：不正常）
-     */
-    byte handBreak;
+    String longitude;
 
     /**
      * 车速
@@ -101,5 +73,52 @@ public class Car {
      * 档位
      */
     int stalls;
+
+    /**
+     * IP地址
+     */
+    String ip;
+
+    /**
+     * 创建时间
+     */
+    Date gmtCreate;
+
+
+
+//    /**
+//     * 动力类型
+//     */
+//    String powerType;
+//
+//    /**
+//     * 油量
+//     */
+//    int oilAmount;
+//
+//    /**
+//     * 开机or关机
+//     */
+//    boolean running;
+//
+//    /**
+//     * 是否锁车
+//     */
+//    boolean locked;
+//
+//    /**
+//     * 座椅开关状态（1：正常，0：不正常）
+//     */
+//    byte chairSwitchState;
+//
+//    /**
+//     * 是否系上安全带
+//     */
+//    boolean seatBelt;
+//
+//    /**
+//     * 手制动状态（1：正常，0：不正常）
+//     */
+//    byte handBreak;
 
 }

@@ -1,5 +1,6 @@
 package com.healist.nettycar.service;
 
+import com.healist.nettycar.entity.Car;
 import org.springframework.stereotype.Service;
 
 /**
@@ -11,5 +12,6 @@ import org.springframework.stereotype.Service;
 public class CarService {
 
 
-
+    public int insertInfo(Car car) {
+    }
 }
