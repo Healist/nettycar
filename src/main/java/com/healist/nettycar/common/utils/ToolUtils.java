@@ -2,6 +2,12 @@ package com.healist.nettycar.common.utils;
 
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.time.DateFormatUtils;
+
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * <p>Title:  </p>
@@ -45,5 +51,19 @@ public class ToolUtils {
             return true;
         }
         return false;
+    }
+
+
+    public static Date timestamp2Date(String time) {
+        SimpleDateFormat format =  new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Long timeStamp = Long.valueOf(time);
+        String d = format.format(timeStamp);
+        Date date = null;
+        try {
+            date=format.parse(d);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return date;
     }
 }

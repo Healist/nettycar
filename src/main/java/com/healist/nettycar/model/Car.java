@@ -1,4 +1,4 @@
-package com.healist.nettycar.entity;
+package com.healist.nettycar.model;
 
 import lombok.Data;
 
@@ -11,6 +11,11 @@ import java.util.Date;
  */
 @Data
 public class Car {
+
+    /**
+     * 自增id
+     */
+    private Long id;
 
     /**
      * 汽车编号
@@ -53,6 +58,11 @@ public class Car {
      * 水温
      */
     int waterTemperature;
+
+    /**
+     * 油温
+     */
+    int oilTemperature;
 
     /**
      * 转速

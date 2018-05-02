@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.healist.nettycar.dao.CarMapper">
+
+    <insert id="insertInfo" parameterType="com.healist.nettycar.model.Car">
+        insert into info(id, uuid, driver_id, latitude, longitude, status, warning, gmt_time, ip, water_temp, oil_temp, speed,
+         rotating_speed, stalls, oil_pressure, voltage, gmt_create)
+        values (#{id, jdbcType=BIGINT}, #{carNumber}, #{driver}, #{latitude}, #{longitude}, #{breakdown}, #{warning}, #{reportDate}, #{ip},
+          #{waterTemperature}, #{oilTemperature}, #{speed}, #{rotatingSpeed}, #{stalls}, #{oilPressure}, #{voltage}, #{gmtCreate})
+    </insert>
+
+
+</mapper>

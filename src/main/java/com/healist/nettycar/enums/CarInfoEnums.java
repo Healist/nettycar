@@ -5,10 +5,13 @@ package com.healist.nettycar.enums;
  * @Description
  * @Create 2018-05-02 下午6:52
  */
-public enum CarInfo {
+public enum CarInfoEnums {
 
+    ID("ID", "车辆UUID"),
+    TIME("TI", "时间戳"),
     CarState("S1", "车辆状态"),
-    CarPos("W1", "车辆位置"),
+    CarPos1("W1", "车辆位置经度"),
+    CarPos2("W2", "车辆位置纬度"),
     CarDriver("D1", "叉车司机"),
     WaterTemp("I1", "水温"),
     OilTemp("I2", "油温"),
@@ -21,7 +24,7 @@ public enum CarInfo {
 
 
 
-    private CarInfo(String symbol, String desc) {
+    private CarInfoEnums(String symbol, String desc) {
         this.desc = desc;
         this.symbol = symbol;
     }

@@ -11,7 +11,9 @@ public interface Constant {
 
     String CAR_STATE = "S1";
 
-    String CAR_POS = "W1";
+    String CAR_POS1 = "W1";
+
+    String CAR_POS2 = "W2";
 
     String CAR_DRIVER = "D1";
 

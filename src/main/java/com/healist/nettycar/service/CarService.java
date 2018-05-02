@@ -1,6 +1,8 @@
 package com.healist.nettycar.service;
 
-import com.healist.nettycar.entity.Car;
+import com.healist.nettycar.dao.CarMapper;
+import com.healist.nettycar.model.Car;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -11,7 +13,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class CarService {
 
+    @Autowired
+    private CarMapper carMapper;
+
 
     public int insertInfo(Car car) {
+        return carMapper.insertInfo(car);
     }
+
+
 }
