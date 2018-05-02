@@ -49,18 +49,18 @@ public class CarServerHandler extends SimpleChannelInboundHandler<String> {
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         Channel incoming = ctx.channel();
-        System.out.println("SimpleChatClient:"+incoming.remoteAddress()+"在线");
+        System.out.println("nettyCar:"+incoming.remoteAddress()+"在线");
     }
 
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
         Channel incoming = ctx.channel();
-        System.out.println("SimpleChatClient:"+incoming.remoteAddress()+"掉线");
+        System.out.println("nettyCar:"+incoming.remoteAddress()+"掉线");
     }
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
         Channel incoming = ctx.channel();
-        System.out.println("SimpleChatClient:"+incoming.remoteAddress()+"异常");
+        System.out.println("nettyCar:"+incoming.remoteAddress()+"异常退出");
         // 当出现异常就关闭连接
         cause.printStackTrace();
         ctx.close();
