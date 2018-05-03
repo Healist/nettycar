@@ -45,6 +45,8 @@ public interface Constant {
 
     int PORT = 8080;
 
+    int HEART_BEAT_PORT = 8082;
+
     int HEAD_LENGTH = 60;
 
     int BODY_LENGTH = 30;

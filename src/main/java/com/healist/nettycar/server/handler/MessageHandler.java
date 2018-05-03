@@ -2,12 +2,12 @@ package com.healist.nettycar.server.handler;
 
 import com.alibaba.fastjson.JSON;
 import com.healist.nettycar.common.constant.Constant;
-import com.healist.nettycar.common.utils.DateUtils;
 import com.healist.nettycar.common.utils.ToolUtils;
 import com.healist.nettycar.model.Car;
 import com.healist.nettycar.enums.CarStatusEnums;
 import com.healist.nettycar.enums.CarWarnEnums;
 import com.healist.nettycar.service.CarService;
+import io.netty.channel.Channel;
 import io.netty.util.ReferenceCountUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +35,7 @@ public class MessageHandler {
         carService = carServiceTemp;
     }
 
-    public static void handleMsg(String str) {
+    public static void handleMsg(String str, Channel incoming) {
         String[] arr;
         String key = "";
         if(!str.contains(Constant.SPLITTER) && !str.equalsIgnoreCase(Constant.END)) {
@@ -64,6 +64,7 @@ public class MessageHandler {
 
             case Constant.ID:
                 car.setCarNumber(str);
+                car.setIp(incoming.remoteAddress().toString());
                 break;
 
             case Constant.CAR_POS1:

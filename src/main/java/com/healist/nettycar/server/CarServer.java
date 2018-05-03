@@ -29,10 +29,12 @@ public class CarServer {
             serverBootstrap.group(bossGroup, workerGroup)
                     .channel(NioServerSocketChannel.class)
                     .childHandler(new CarServerInitializer())
+//                    .childHandler(new HeartbeatHandlerInitializer())
                     .option(ChannelOption.SO_BACKLOG, 128)
                     .childOption(ChannelOption.SO_KEEPALIVE, true);
 
             System.out.println("服务器已启动！");
+            System.out.println("心跳包检测已启动，监听端口：" + Constant.HEART_BEAT_PORT);
 
             // 绑定端口，开始接收进来的连接
             ChannelFuture future = serverBootstrap.bind(Constant.PORT).sync();

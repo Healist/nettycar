@@ -13,7 +13,7 @@ import io.netty.channel.group.ChannelGroup;
  */
 public class CarServerHandler extends SimpleChannelInboundHandler<String> {
 
-    public static ChannelGroup channels = CarChannelGroup.getInstance();
+    private ChannelGroup channels = CarChannelGroup.getInstance();
 
     @Override
     public void handlerAdded(ChannelHandlerContext ctx) throws Exception {
@@ -37,9 +37,9 @@ public class CarServerHandler extends SimpleChannelInboundHandler<String> {
     }
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, String s) throws Exception {
-//        Channel incoming = ctx.channel();
+        Channel incoming = ctx.channel();
         System.out.println("received:" + s);
-        MessageHandler.handleMsg(s);
+        MessageHandler.handleMsg(s, incoming);
     }
 
 
