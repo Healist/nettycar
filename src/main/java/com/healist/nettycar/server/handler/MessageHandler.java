@@ -1,15 +1,17 @@
 package com.healist.nettycar.server.handler;
 
+import com.alibaba.fastjson.JSON;
 import com.healist.nettycar.common.constant.Constant;
+import com.healist.nettycar.common.utils.DateUtils;
 import com.healist.nettycar.common.utils.ToolUtils;
 import com.healist.nettycar.model.Car;
 import com.healist.nettycar.enums.CarStatusEnums;
 import com.healist.nettycar.enums.CarWarnEnums;
 import com.healist.nettycar.service.CarService;
+import io.netty.util.ReferenceCountUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import javax.annotation.PostConstruct;
 import java.util.Date;
 
@@ -34,11 +36,23 @@ public class MessageHandler {
     }
 
     public static void handleMsg(String str) {
-        if(!str.contains(":")) {
+        String[] arr;
+        String key = "";
+        if(!str.contains(Constant.SPLITTER) && !str.equalsIgnoreCase(Constant.END)) {
+            ReferenceCountUtil.release(str);
             return;
         }
-        str = str.split(":")[1];
-        switch (str) {
+        if(!str.equalsIgnoreCase(Constant.END)) {
+            arr = str.split(Constant.SPLITTER);
+            key = arr[0];
+            str = arr[1];
+        }
+        else {
+            key = str;
+        }
+
+
+        switch (key) {
             case Constant.CAR_STATE:
                 if(str.equals(String.valueOf(CarStatusEnums.RUNNING.getNum()))) {
                     car.setBreakdown(CarStatusEnums.RUNNING.isBreakDown());
@@ -116,6 +130,9 @@ public class MessageHandler {
 
             case Constant.END:
                 // 结束操作，储存数据并且生成新对象
+                System.out.println(JSON.toJSONString(car));
+                System.out.println(car);
+
                 if(car != null) {
                     car.setGmtCreate(new Date());
                     carService.insertInfo(car);

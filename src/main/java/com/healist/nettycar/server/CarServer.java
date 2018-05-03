@@ -1,5 +1,6 @@
 package com.healist.nettycar.server;
 
+import com.healist.nettycar.common.constant.Constant;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelOption;
@@ -7,6 +8,8 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
 
 /**
  * @Author healist
@@ -16,13 +19,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class CarServer {
 
-    private int port;
-
-    public CarServer(int port) {
-        this.port = port;
-    }
-
-    public void run() {
+    @PostConstruct
+    public void init() {
         EventLoopGroup bossGroup = new NioEventLoopGroup();
         EventLoopGroup workerGroup = new NioEventLoopGroup();
 
@@ -37,7 +35,7 @@ public class CarServer {
             System.out.println("服务器已启动！");
 
             // 绑定端口，开始接收进来的连接
-            ChannelFuture future = serverBootstrap.bind(port).sync();
+            ChannelFuture future = serverBootstrap.bind(Constant.PORT).sync();
 
             // 等待服务器  socket 关闭 。
             // 在这个例子中，这不会发生，但你可以优雅地关闭你的服务器。
@@ -53,16 +51,18 @@ public class CarServer {
         }
     }
 
-    public static void main(String[] args) {
-        int port;
-        if(args.length > 0) {
-            port = Integer.parseInt(args[0]);
-        } else {
-            port = 8080;
-        }
-        // 执行服务器
-        CarServer server = new CarServer(port);
-        server.run();
-    }
+
+
+//    public static void main(String[] args) {
+//        int port;
+//        if(args.length > 0) {
+//            port = Integer.parseInt(args[0]);
+//        } else {
+//            port = 8080;
+//        }
+//        // 执行服务器
+//        CarServer server = new CarServer(port);
+//        server.run();
+//    }
 
 }

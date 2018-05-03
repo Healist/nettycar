@@ -42,7 +42,7 @@
     </appender>
 
     <root level="INFO">
-        <appender-ref ref="logAppender" />
+        <appender-ref ref="STDOUT" />
     </root>
 
     <logger name="com.healist.nettycar" level="INFO" additivity="false">

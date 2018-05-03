@@ -5,8 +5,8 @@
     <insert id="insertInfo" parameterType="com.healist.nettycar.model.Car">
         insert into info(id, uuid, driver_id, latitude, longitude, status, warning, gmt_time, ip, water_temp, oil_temp, speed,
          rotating_speed, stalls, oil_pressure, voltage, gmt_create)
-        values (#{id, jdbcType=BIGINT}, #{carNumber}, #{driver}, #{latitude}, #{longitude}, #{breakdown}, #{warning}, #{reportDate}, #{ip},
-          #{waterTemperature}, #{oilTemperature}, #{speed}, #{rotatingSpeed}, #{stalls}, #{oilPressure}, #{voltage}, #{gmtCreate})
+        values (#{id, jdbcType=BIGINT}, #{carNumber}, #{driver}, #{latitude}, #{longitude}, #{breakdown}, #{warning}, #{reportDate},
+         #{ip}, #{waterTemperature}, #{oilTemperature}, #{speed}, #{rotatingSpeed}, #{stalls}, #{oilPressure}, #{voltage}, #{gmtCreate})
     </insert>
 
 

@@ -1,5 +1,6 @@
 package com.healist.nettycar.client;
 
+import com.healist.nettycar.common.constant.Constant;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.EventLoopGroup;
@@ -17,7 +18,7 @@ import java.io.InputStreamReader;
 public class CarClient {
 
     public static void main(String[] args) throws Exception{
-        new CarClient("localhost", 8080).run();
+        new CarClient("localhost", Constant.PORT).run();
     }
 
     private final String host;

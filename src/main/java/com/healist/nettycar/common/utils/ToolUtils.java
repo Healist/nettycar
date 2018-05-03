@@ -3,6 +3,7 @@ package com.healist.nettycar.common.utils;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
+import org.junit.jupiter.api.Test;
 
 import java.sql.Timestamp;
 import java.text.ParseException;
@@ -57,7 +58,8 @@ public class ToolUtils {
     public static Date timestamp2Date(String time) {
         SimpleDateFormat format =  new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Long timeStamp = Long.valueOf(time);
-        String d = format.format(timeStamp);
+        System.out.println(time);
+        String d = format.format(new Date(timeStamp * 1000L));
         Date date = null;
         try {
             date=format.parse(d);
@@ -67,3 +69,5 @@ public class ToolUtils {
         return date;
     }
 }
+
+

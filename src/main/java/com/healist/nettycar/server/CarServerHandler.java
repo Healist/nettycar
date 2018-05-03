@@ -38,8 +38,10 @@ public class CarServerHandler extends SimpleChannelInboundHandler<String> {
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, String s) throws Exception {
 //        Channel incoming = ctx.channel();
+        System.out.println("received:" + s);
         MessageHandler.handleMsg(s);
     }
+
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {

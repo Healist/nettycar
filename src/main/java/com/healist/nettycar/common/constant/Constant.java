@@ -39,6 +39,12 @@ public interface Constant {
 
     String END = "END";
 
+    String SPLITTER = ":";
+
+    String DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
+
+    int PORT = 8080;
+
     int HEAD_LENGTH = 60;
 
     int BODY_LENGTH = 30;
