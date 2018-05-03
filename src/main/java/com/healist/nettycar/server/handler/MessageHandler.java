@@ -25,6 +25,8 @@ public class MessageHandler {
 
     private static Car car = new Car();
 
+//    private static ThreadLocal<Car> contextHolder = new ThreadLocal<>();
+
     private static CarService carService;
 
     @Autowired
