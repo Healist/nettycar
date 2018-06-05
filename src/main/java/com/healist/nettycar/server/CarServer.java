@@ -17,10 +17,10 @@ import javax.annotation.PostConstruct;
  * @Create 2018-03-14 下午5:09
  */
 @Component
-public class CarServer {
+public class CarServer implements Runnable {
 
-    @PostConstruct
-    public void init() {
+    @Override
+    public void run() {
         EventLoopGroup bossGroup = new NioEventLoopGroup();
         EventLoopGroup workerGroup = new NioEventLoopGroup();
 
@@ -52,7 +52,6 @@ public class CarServer {
             System.out.println("服务器已关闭！");
         }
     }
-
 
 
 //    public static void main(String[] args) {
