@@ -10,4 +10,8 @@
     </insert>
 
 
+    <select id="getCarByNumber" parameterMap="String">
+        select count(*) from car where uuid = #{carNumber}
+    </select>
+
 </mapper>

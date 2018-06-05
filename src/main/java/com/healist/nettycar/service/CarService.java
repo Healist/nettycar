@@ -24,4 +24,7 @@ public class CarService {
     }
 
 
+    public int getCarByBumber(String carNumber) {
+        return carMapper.getCarByNumber(carNumber);
+    }
 }

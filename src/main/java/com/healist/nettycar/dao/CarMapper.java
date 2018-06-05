@@ -10,4 +10,5 @@ public interface CarMapper {
 
     int insertInfo(Car car);
 
+    int getCarByNumber(String carNumber);
 }

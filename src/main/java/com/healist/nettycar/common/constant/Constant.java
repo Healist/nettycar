@@ -51,4 +51,5 @@ public interface Constant {
 
     int BODY_LENGTH = 30;
 
+    String START = "~";
 }

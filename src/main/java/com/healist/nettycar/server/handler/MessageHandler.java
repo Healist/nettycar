@@ -3,6 +3,7 @@ package com.healist.nettycar.server.handler;
 import com.alibaba.fastjson.JSON;
 import com.healist.nettycar.common.constant.Constant;
 import com.healist.nettycar.common.utils.ToolUtils;
+import com.healist.nettycar.enums.DatasetEnums;
 import com.healist.nettycar.model.Car;
 import com.healist.nettycar.enums.CarStatusEnums;
 import com.healist.nettycar.enums.CarWarnEnums;
@@ -35,6 +36,26 @@ public class MessageHandler {
     @PostConstruct
     public void init() {
         carService = carServiceTemp;
+    }
+
+    public static boolean handleLogout(String req) {
+        return true;
+    }
+
+
+    public static boolean handleLogin(String str) {
+        if(str.startsWith(Constant.START) && str.endsWith(Constant.END)) {
+            String carNumber = getItemFromStr(str, DatasetEnums.EQUIPMENT_NUM);
+            int count = carService.getCarByBumber(carNumber);
+            return count > 0;
+        }
+        return false;
+    }
+
+    private static String getItemFromStr(String str, DatasetEnums equipmentNum) {
+        int start = equipmentNum.getStart();
+        int end = equipmentNum.getEnd();
+        return str.substring(start, end);
     }
 
     public static void handleMsg(String str, Channel incoming) {
@@ -147,5 +168,6 @@ public class MessageHandler {
                 break;
         }
     }
+
 
 }
