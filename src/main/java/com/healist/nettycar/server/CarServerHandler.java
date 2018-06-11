@@ -1,5 +1,6 @@
 package com.healist.nettycar.server;
 
+import com.healist.nettycar.dto.CustomMsg;
 import com.healist.nettycar.server.handler.MessageHandler;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
@@ -11,7 +12,7 @@ import io.netty.channel.group.ChannelGroup;
  * @Description
  * @Create 2018-03-14 下午5:23
  */
-public class CarServerHandler extends SimpleChannelInboundHandler<String> {
+public class CarServerHandler extends SimpleChannelInboundHandler<Object> {
 
     private ChannelGroup channels = CarChannelGroup.getInstance();
 
@@ -36,10 +37,15 @@ public class CarServerHandler extends SimpleChannelInboundHandler<String> {
         // so there is no need to do "channels.remove(ctx.channel());"
     }
     @Override
-    protected void channelRead0(ChannelHandlerContext ctx, String s) throws Exception {
+    protected void channelRead0(ChannelHandlerContext ctx, Object obj) throws Exception {
         Channel incoming = ctx.channel();
-        System.out.println("received:" + s);
-        MessageHandler.handleMsg(s, incoming);
+        if(obj instanceof CustomMsg) {
+            CustomMsg customMsg = (CustomMsg) obj;
+            MessageHandler.handleBytesMsg(customMsg, incoming);
+            System.out.println("received: " + customMsg);
+        }
+//        System.out.println("received:" + s);
+//        MessageHandler.handleMsg(s, incoming);
     }
 
 
@@ -62,6 +68,4 @@ public class CarServerHandler extends SimpleChannelInboundHandler<String> {
         cause.printStackTrace();
         ctx.close();
     }
-
-
 }

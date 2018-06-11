@@ -18,9 +18,7 @@ public class CarService {
 
 
     public int insertInfo(Car car) {
-        int res = carMapper.insertInfo(car);
-        if(res > 0) System.out.println("insert success");
-        return res;
+        return carMapper.insertInfo(car);
     }
 
 

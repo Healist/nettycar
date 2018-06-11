@@ -3,6 +3,7 @@ package com.healist.nettycar.server.handler;
 import com.alibaba.fastjson.JSON;
 import com.healist.nettycar.common.constant.Constant;
 import com.healist.nettycar.common.utils.ToolUtils;
+import com.healist.nettycar.dto.CustomMsg;
 import com.healist.nettycar.enums.DatasetEnums;
 import com.healist.nettycar.model.Car;
 import com.healist.nettycar.enums.CarStatusEnums;
@@ -58,6 +59,15 @@ public class MessageHandler {
         return str.substring(start, end);
     }
 
+    public static void handleBytesMsg(CustomMsg msg, Channel incoming) {
+        String str = "ID:8fb580bda9d8Q1TI:1525334150Q1S1:1Q1W1:35Q1W2:120Q1D1:007Q1I1:" +
+                "45Q1I2:80Q1I3:120Q1I4:100Q1I5:1Q1I6:200Q1I7:150Q1ENDQ1";
+        String[] arr = str.split(Constant.JOINER);
+        for(String item : arr) {
+            handleMsg(item, incoming);
+        }
+    }
+
     public static void handleMsg(String str, Channel incoming) {
         String[] arr;
         String key = "";
@@ -73,7 +83,6 @@ public class MessageHandler {
         else {
             key = str;
         }
-
 
         switch (key) {
             case Constant.CAR_STATE:
@@ -155,11 +164,13 @@ public class MessageHandler {
             case Constant.END:
                 // 结束操作，储存数据并且生成新对象
                 System.out.println(JSON.toJSONString(car));
-                System.out.println(car);
 
                 if(car != null) {
                     car.setGmtCreate(new Date());
-                    carService.insertInfo(car);
+                    int res = carService.insertInfo(car);
+                    if(res > 0) {
+                        System.out.println("叉车编号："+car.getCarNumber() + " 上报数据入库成功！");
+                    }
                 }
                 car = new Car();
                 break;
